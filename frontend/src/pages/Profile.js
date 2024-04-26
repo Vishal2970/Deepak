@@ -267,6 +267,7 @@ function Profile() {
             fetchProfileData(); // Refresh profile data after photo upload
         } catch (err) {
             console.error('Error uploading photo:', err);
+            alert(err);
             setError('Error uploading photo');
         }
     };

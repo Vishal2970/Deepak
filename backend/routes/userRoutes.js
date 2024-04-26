@@ -96,20 +96,28 @@ router.get('/profile', authenticateToken, async (req, res) => {
 // Profile photo upload route
 router.post('/upload-photo', authenticateToken, upload.single('photo'), async (req, res) => {
     try {
+        // Verify file exists in req.file.path
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
         const userId = req.user.id; // Use the ID from the decoded token
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Save the file path of the uploaded photo to the user's profilePhoto property
-        user.profilePhoto = req.file.path;
+        // Save the relative file path of the uploaded photo to the user's profilePhoto property
+        const relativeFilePath = req.file.path.replace(`${process.cwd()}/`, '');
+        user.profilePhoto = relativeFilePath;
         await user.save();
-
+        console.error("upload");
         res.json({ message: 'Profile photo uploaded successfully' });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ error: 'Server error, please try again later' });
     }
 });
+
 
 module.exports = router;
