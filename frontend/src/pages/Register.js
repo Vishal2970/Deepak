@@ -7,6 +7,9 @@ function Register() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const handleRegisterClick = () => {
+        navigate('/');
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -44,6 +47,15 @@ function Register() {
                 <button type="submit">Register</button>
             </form>
             {error && <p>{error}</p>}
+            <div>
+                <span
+                    onClick={handleRegisterClick}
+                    style={{ cursor: 'pointer', color: 'blue', marginRight: '8px' }}
+                    title="Click here to navigate to login"
+                >
+        For Login click here
+                </span>
+            </div>
         </div>
     );
 }
