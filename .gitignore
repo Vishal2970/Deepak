@@ -1,0 +1,40 @@
+# General ignores
+.DS_Store
+Thumbs.db
+
+# Node.js packages and environment files
+node_modules/
+.env
+.env.local
+
+# Log files
+*.log
+
+# Build and temporary directories
+dist/
+build/
+out/
+temp/
+.cache/
+coverage/
+.vscode/
+
+# IDE settings and files
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Frontend ignores
+/frontend/node_modules/
+frontend/build/
+
+# Backend ignores
+/backend/node_modules/
+backend/build/
+
+# Miscellaneous ignores
+# Add any other files or folders you want to ignore across all projects here
+
+# Optional: Ignore files and folders specific to certain tools or libraries you use
